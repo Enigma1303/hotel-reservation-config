@@ -38,6 +38,8 @@ resilience4j:
         waitDurationInOpenState: 10s
         permittedNumberOfCallsInHalfOpenState: 2
         record-exceptions: java.lang.Exception
+        ignore-exceptions:
+             - feign.FeignException$NotFound
       roomServiceCB:
         registerHealthIndicator: true
         slidingWindowType: COUNT_BASED
@@ -47,6 +49,8 @@ resilience4j:
         waitDurationInOpenState: 10s
         permittedNumberOfCallsInHalfOpenState: 2
         record-exceptions: java.lang.Exception
+        ignore-exceptions: 
+          - feign.FeignException$NotFound 
       paymentServiceCB:
         registerHealthIndicator: true
         slidingWindowType: COUNT_BASED
