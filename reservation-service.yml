@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/reservation_db
+    url: jdbc:mysql://mysql-reservation:3306/reservation_db
     username: root
     password: root
   jpa:
@@ -8,7 +8,7 @@ spring:
       ddl-auto: update
     show-sql: true
   kafka:
-    bootstrap-servers: localhost:9094
+    bootstrap-servers: kafka:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -37,9 +37,10 @@ resilience4j:
         failureRateThreshold: 50
         waitDurationInOpenState: 10s
         permittedNumberOfCallsInHalfOpenState: 2
-        record-exceptions: java.lang.Exception
+        record-exceptions:
+          - java.lang.Exception
         ignore-exceptions:
-             - feign.FeignException$NotFound
+          - feign.FeignException$NotFound
       roomServiceCB:
         registerHealthIndicator: true
         slidingWindowType: COUNT_BASED
@@ -48,7 +49,7 @@ resilience4j:
         failureRateThreshold: 50
         waitDurationInOpenState: 10s
         permittedNumberOfCallsInHalfOpenState: 2
-         record-exceptions:
+        record-exceptions:
           - java.lang.Exception
         ignore-exceptions:
           - feign.FeignException$NotFound
@@ -61,7 +62,10 @@ resilience4j:
         failureRateThreshold: 50
         waitDurationInOpenState: 10s
         permittedNumberOfCallsInHalfOpenState: 2
-        record-exceptions: java.lang.Exception
+        record-exceptions:
+          - java.lang.Exception
+        ignore-exceptions:
+          - feign.FeignException$NotFound
 
 management:
   health:
