@@ -52,8 +52,7 @@ resilience4j:
         record-exceptions:
           - java.lang.Exception
         ignore-exceptions:
-          - feign.FeignException$NotFound
-          - feign.FeignException$Conflict
+          - feign.FeignException
       paymentServiceCB:
         registerHealthIndicator: true
         slidingWindowType: COUNT_BASED
